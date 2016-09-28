@@ -30,7 +30,7 @@ public class IramLike implements Topic {
 	}
 	@Override
 	public boolean isTriggered(String userInput) {
-		String[]triggers = {"school", "class", "teacher"};
+		String[] triggers = {"school", "class", "teacher"};
 		//you could use a for loop
 		//to iterate through an array
 		if(Iram.findKeyword(userInput, "school", 0) >= 0){
