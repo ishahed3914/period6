@@ -21,4 +21,17 @@ public class School implements Topic {
 		}
 
 	}
+
+	@Override
+	public boolean isTriggered(String userInput) {
+		if(Iram.findKeyword(userInput, "school", 0)>=0){
+			return true;
+		}
+		if(Iram.findKeyword(userInput, "class", 0)>=0){
+			return true;
+		}
+		return false;
+	}
+
 }
+	

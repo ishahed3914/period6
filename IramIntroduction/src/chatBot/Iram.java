@@ -19,6 +19,7 @@ public class Iram {
 	static String response;
 	static Topic school;
 	static Topic like;
+	static Topic hello;
 
 	public static void main(String[] args) {
 		createTopic();
@@ -41,13 +42,18 @@ public class Iram {
 				inLoop = false;//exit the loop
 				school.talk();
 			}
+			else if(hello.isTriggered(response)){
+				inLoop = false;//exit this loop
+				school.talk();
+			}
 			else{
 				print("Sorry I didn't get you");
 			}
 		}
 	}
 	public static int findKeyword (String searchString, String key, int startIndex){
-		int StartIndex;
+		int 
+;
 		//delete white space
 		String phrase = searchString.trim();
 		//set all letters to lower case
@@ -162,6 +168,8 @@ public class Iram {
 	public static void createTopic() {
 		input = new Scanner(System.in);
 		school = new School(); 
+		hello = new IramHello();
+		like = new IramLike();
 
 	}
 
