@@ -8,7 +8,7 @@ public class arrayIntro {
 		long startTime = System.currentTimeMillis();
 		sampleElement sample = new sampleElement(10);
 		sample.increase();
-		System.out.println("The sample element has a number equal to)" sample.getNumber());
+		System.out.println("The sample element has a number equal to)" + sample.getNumber());
 		arrayIntroMethod();
 		String[] someStrings = new String[100];
 		populateArray(someStrings);
