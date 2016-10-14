@@ -6,14 +6,28 @@ public class arrayIntro {
 		//this is how you time how
 		//quickly a computer processes
 		long startTime = System.currentTimeMillis();
+		sampleElement sample = new sampleElement(10);
+		sample.increase();
+		System.out.println("The sample element has a number equal to)" sample.getNumber());
 		arrayIntroMethod();
 		String[] someStrings = new String[100];
 		populateArray(someStrings);
-		changeString(someStrings[99]);
 		printArray(someStrings);
-		
+		//in this method, we pass the ELEMENT
+		//not the array, so
+		//no change will be made
+		System.out.println("Before "+someStrings[99]);
+		changeString(someStrings[99]);
+		System.out.println("After\"changeString\" method "+someStrings[99]);
+		changeArrayElement(someStrings, 99);
 		long endTime = System.currentTimeMillis();
 		System.out.println("Completed method in " + (endTime - startTime)+ " milliseconds." );
+	}
+	private static void passByValueDemonstration(){
+		
+	}
+	private static void changeArrayElement(String[] someStrings, int i) {
+		someStrings[i] = "new item"+(i+1);
 	}
 	public static void arrayIntroMethod(){
 		//construct 3 integer arrays
@@ -57,6 +71,12 @@ public class arrayIntro {
 	private static void changeString(String s){
 		s = "This string has been changed";
 	}
+	private static void changeArray(String[] someStrings){
+		someStrings = new String[100];
+		for(int i = 0; i < someStrings.length; i++){
+			someStrings[i] = "new item"+(i+1);
+		}
+	}
 	private static void printArray(String[] a){
 		//this loop prints the strings
 		for(String s: a){
@@ -66,7 +86,7 @@ public class arrayIntro {
 	private static void populateArray(String[] a){
 		//this loop
 		for(int index = 0; index < a.length; index++){
-			a[index] = "value" + (index+1);
+			a[index] = "value " + (index+1);
 		}
 	}
 }
