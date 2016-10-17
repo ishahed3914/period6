@@ -11,7 +11,6 @@ public class sampleElement {
 		return number;
 	}
 	public void increase(){
-		int x = number;
-		x++;
+		number++;
 	}
 }
