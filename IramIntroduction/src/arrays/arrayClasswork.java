@@ -19,7 +19,6 @@ public class arrayClasswork {
 		for(int i = 0; i < array.length; i++){
 			array[i] = (i+1);
 			System.out.println(array[i]);
-			
 		}
 	}
 	public static void diceArray(){
