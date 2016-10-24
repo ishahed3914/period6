@@ -34,6 +34,9 @@ public class binarySearchExample {
 		arr[j] = arr[i];
 		arr[i] = placeholder;
 	}
+	private static void cycleThrough(int[] array){
+		                                                                                                                                                                                                                                                                                                                                                                                                
+	}
 	/**
 	 * returns true if SearchValue is less than element
 	 * halfway between beginning and end.
