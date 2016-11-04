@@ -20,7 +20,7 @@ public class CaveRoom {
 		this.description = description;
 		setDefaultContents("   ");
 		contents = defaultContents;
-		
+
 		borderingRooms = new CaveRoom[4];
 		doors = new Door[4];
 		for(int i = 0 ; i < borderingRooms.length; i++){
@@ -44,32 +44,32 @@ public class CaveRoom {
 				}
 			}
 		}
-	
+
 	}
 
 	public String getContents(){
 		return contents;
 	}
-	
+
 	public void enter(){
 		contents = " X ";
 	}
-	
+
 	public void leave(){
 		contents = defaultContents;
 	}
-	
+
 	public void setDefaultContents(String symbol){
 		defaultContents = symbol;
 	}
-	
+
 
 	public void addRoom(int direction, CaveRoom anotherRoom, Door door){
 		borderingRooms[direction] = anotherRoom;
 		doors[direction] = door;
 		setDirections();
 	}
-	
+
 	/**
 	 * Gives this room access to anotherRoom (and vice-versa) and
 	 * sets a door between them, and updates the directions
@@ -91,14 +91,14 @@ public class CaveRoom {
 		return (dir+2)%4;
 	}
 
-	
+
 	public String getDescription(){
 		return description+directions;
 	}
 
-	
 
-	
+
+
 	public Door getDoor(int dir){
 		return doors[dir];
 	}
@@ -108,5 +108,9 @@ public class CaveRoom {
 		description = string;
 	}
 
+	public void interpretInput(String input) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
- 
