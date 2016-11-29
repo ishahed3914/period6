@@ -9,6 +9,8 @@ public class CaveExplorer {
 	public static Inventory inventory;
 	
 	public static void main(String[] args){
+		
+		
 		in = new Scanner(System.in);
 		
 		
@@ -18,6 +20,7 @@ public class CaveExplorer {
 				caves[row][col] = new CaveRoom("This cave has coordiantes: ("+row+","+col+")");
 			}
 		}
+		caves[0][2] = new EventRoom("This is the room where the guy with the tail met you.", new MagicSquare());
 		currentRoom = caves[0][1];
 		currentRoom.enter();
 		caves[0][1].setConnection(CaveRoom.EAST,caves[0][2],new Door());
@@ -35,6 +38,9 @@ public class CaveExplorer {
 			String input = in.nextLine();
 			currentRoom.interpretInput(input);
 		}
+	}
+	public static void print(String string){
+		System.out.println(string);
 	}
 		
 }

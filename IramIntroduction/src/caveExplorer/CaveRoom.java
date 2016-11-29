@@ -126,12 +126,7 @@ public class CaveRoom {
 				break;
 			}			
 		}
-		if(borderingRooms[indexFound] != null && doors[indexFound].isOpen()){
-			CaveExplorer.currentRoom.leave();
-			CaveExplorer.currentRoom = borderingRooms[indexFound];
-			CaveExplorer.currentRoom.enter();
-			CaveExplorer.inventory.updateMap();
-		}
+		goToRoom(indexFound);
 	}
 
 	private static boolean isValid(String input) {
@@ -142,5 +137,12 @@ public class CaveRoom {
 		}
 		return false;
 	}
-
+	public void goToRoom(int direction){
+		if(borderingRooms[direction] != null && doors[direction].isOpen()){
+			CaveExplorer.currentRoom.leave();
+			CaveExplorer.currentRoom = borderingRooms[direction];
+			CaveExplorer.currentRoom.enter();
+			CaveExplorer.inventory.updateMap();
+		}
+	}
 }
