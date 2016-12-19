@@ -29,7 +29,11 @@ public class TextArea extends TextLabel {
 		if(text != null) g.drawString(text, 4, getHeight()-5);	
 		FontMetrics fm = g.getFontMetrics();
 		String[] words = getText().split(" ");//splits word at every space
-		if()
+		fm.getHeight();
+		fm.getAscent();
+		fm.getDescent();
+		fm.stringWidth(text);
+		if(text > getWidth())
 	}
 
 }
