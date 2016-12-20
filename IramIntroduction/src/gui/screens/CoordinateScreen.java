@@ -1,16 +1,18 @@
 package gui.screens;
 
-import java.awt.Color;
+
 import java.util.ArrayList;
 
 import gui.Screen;
-import gui.components.Action;
-import gui.components.Button;
+import gui.components.Graphics;
+import gui.components.TextArea;
 import gui.components.TextLabel;
 import gui.components.Visible;
 
 public class CoordinateScreen extends Screen {
-	private Button myButton = new Button(40,50,100,30,"Button",new Color(0,76,153), new Action());
+	private TextArea area;
+	private Graphics car;
+	
 	public CoordinateScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -20,7 +22,11 @@ public class CoordinateScreen extends Screen {
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		TextLabel text = new TextLabel(20, 200, 500, 40, "Some Text~");
 		viewObjects.add(text);
-		viewObjects.add(myButton);
+		area = new TextArea(20,300,300,100, "This is a really long text so it gets split up into different lines");
+		viewObjects.add(area);
+		car = new Graphics(30,30,100,100 "resources/sampleImages/veneno.jpg");
+		viewObjects.add(car);
+
 		
 	}
 
