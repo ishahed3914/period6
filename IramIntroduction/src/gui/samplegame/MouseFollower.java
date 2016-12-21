@@ -27,14 +27,7 @@ public class MouseFollower extends GUIApplication {
 		app.start();
 	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
-
 
 
 

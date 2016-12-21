@@ -24,7 +24,7 @@ public class TextArea extends TextLabel {
 	@Override
 	public void update(Graphics2D g) {
 		g = clear();
-		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(Color.black);
 		g.setFont(new Font(getFont(), Font.PLAIN,getSize()));
 		FontMetrics fm = g.getFontMetrics();
