@@ -43,7 +43,7 @@ public class Graphics implements Visible {
 	
 	/**
 	 * Scaled size graphics constructor
-	 * @param x
+	 * @param x//
 	 * @param y
 	 * @param scale 
 	 * @param imageLocation
@@ -52,7 +52,7 @@ public class Graphics implements Visible {
 		this.x = x;
 		this.y = y;
 		loadedImages = false;
-		loadImages(imageLocation,scale);
+		loadImages(imageLocation,scale);//
 	}
 
 	private void loadImages(String imageLocation, 

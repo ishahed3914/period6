@@ -12,7 +12,7 @@ public class TextLabel extends Component {
 	private int size;
 	
 	public TextLabel(int x, int y, int w, int h, String text) {
-		super(x, y, w, h);
+		super(x, y, w, h);//
 		this.text =text;
 		this.font = "Helvetica";
 		this.size = 20;

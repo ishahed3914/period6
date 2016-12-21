@@ -17,7 +17,7 @@ public abstract class Screen {
 
 	public Screen(int width, int height) {
 		viewObjects = new ArrayList<Visible>();
-		initObjects(viewObjects);
+		initObjects(viewObjects);//
 		initImage(width, height);
 	}
 

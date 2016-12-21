@@ -44,7 +44,7 @@ public class CoordinateScreen extends Screen
 		});
 		viewObjects.add(button);
 		text = 
-				new TextLabel(20, 100, 500, 40, "Some text");
+				new TextLabel(20, 100, 500, 40, "Some text");//
 		viewObjects.add(text);
 		
 		area = 

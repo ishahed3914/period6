@@ -38,7 +38,7 @@ public abstract class GUIApplication extends JFrame implements Runnable {
 		}
 	}
 	
-	public void run(){
+//	public void run(){/
 		while(true){
 			//redraws the display
 			currentScreen.update();
