@@ -27,7 +27,7 @@ public class MouseFollower extends GUIApplication {
 		app.start();
 	}
 
-}
+}//
 
 
 
