@@ -61,7 +61,7 @@ public class CoordinateScreen extends Screen
 	}
 
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stuba
 		
 	}
 
