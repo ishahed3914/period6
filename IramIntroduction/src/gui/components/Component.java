@@ -22,7 +22,7 @@ public abstract class Component implements Visible {
 	@Override
 	public BufferedImage getImage() {
 		// TODO Auto-generated method stub
-		return null;
+		return image;
 	}
 
 	@Override

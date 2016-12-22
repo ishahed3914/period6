@@ -9,11 +9,11 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import gui.components.Visible;
+
 public abstract class Screen {
 
 	private BufferedImage image;
 	private ArrayList<Visible> viewObjects;
-
 
 	public Screen(int width, int height) {
 		viewObjects = new ArrayList<Visible>();
@@ -21,52 +21,49 @@ public abstract class Screen {
 		initImage(width, height);
 	}
 
-	public abstract void 
-	initObjects(ArrayList<Visible> viewObjects);
+	public abstract void initObjects(ArrayList<Visible> viewObjects);
 
 	public void initImage(int width, int height) {
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		update();
 	}
 
-	public BufferedImage getImage(){
+	public BufferedImage getImage() {
 		return image;
 	}
 
-	public int getWidth(){
+	public int getWidth() {
 		return image.getWidth();
 	}
 
-	public int getHeight(){
+	public int getHeight() {
 		return image.getHeight();
 	}
 
 	public void update() {
 		Graphics2D g = image.createGraphics();
-		//smooth the graphics
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		// smooth the graphics
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		g.setColor(Color.white);
 		g.fillRect(0, 0, image.getWidth(), image.getHeight());
 		g.setColor(Color.black);
-//		for(int i = 0; i < viewObjects.size(); i++){
-//			
-//		}
-		for(Visible v: viewObjects){
+		// for(int i = 0; i < viewObjects.size(); i++){
+		//
+		// }
+		for (Visible v : viewObjects) {
 			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
 		}
 	}
 
-	
-	//represents ABILITY to listen to mouse
-	//but isn't actually doing something
-	public MouseMotionListener getMouseMotionListener(){
+	// represents ABILITY to listen to mouse
+	// but isn't actually doing something
+	public MouseMotionListener getMouseMotionListener() {
 		return null;
 	}
-	
-	public MouseListener getMouseListener(){
+
+	public MouseListener getMouseListener() {
 		return null;
 	}
-	
+
 }

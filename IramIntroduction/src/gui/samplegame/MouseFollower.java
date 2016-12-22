@@ -2,12 +2,14 @@ package gui.samplegame;
 
 import gui.GUIApplication;
 import gui.screens.CoordinateScreen;
+import gui.screens.MovementScreen;
 
 public class MouseFollower extends GUIApplication {
 
 	//FIELDS
 	public static MouseFollower game;//only ONE exists
 	private CoordinateScreen cs;
+	public static MovementScreen moveScreen;
 	
 	
 	public MouseFollower(int width, int height) {
@@ -19,6 +21,7 @@ public class MouseFollower extends GUIApplication {
 	public void initScreen() {
 		cs = new CoordinateScreen(getWidth(), getHeight());
 		setScreen(cs);
+		moveScreen = new MovementScreen(getWidth(),getHeight());
 	}
 
 	public static void main(String[] args) {
@@ -27,7 +30,7 @@ public class MouseFollower extends GUIApplication {
 		app.start();
 	}
 
-}//
+}
 
 
 
