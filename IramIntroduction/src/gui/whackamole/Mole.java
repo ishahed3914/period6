@@ -1,6 +1,6 @@
 package gui.whackamole;
 
-import gui.components.ClickableGraphic;
+import gui.screens.ClickableGraphic;
 
 public class Mole extends ClickableGraphic implements MoleInterface {
 	

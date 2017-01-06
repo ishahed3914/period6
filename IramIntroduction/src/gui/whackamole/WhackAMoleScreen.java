@@ -1,6 +1,7 @@
 package gui.whackamole;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import gui.components.Action;
 import gui.components.TextLabel;
@@ -18,19 +19,10 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable {
 	public WhackAMoleScreen(int width, int height) {
 		super(width, height);
 		timeLeft = 30.0;
+		//when making Simon, creating a thread like this
+		//is necessary since Simons screen changes
 		Thread play = new Thread(this);
 		play.start();
-	}
-
-	@Override
-	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		moles = new ArrayList<MoleInterface>();
-		player = getAPlayer();
-		label = new TextLabel(350, 220, 100, 40, "");
-		timeLabel = new TextLabel(360, 40, 80, 40, "30.0");
-		viewObjects.add(player);
-		viewObjects.add(timeLabel);
-		viewObjects.add(label);
 	}
 
 	/**
@@ -120,5 +112,17 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	@Override
+	public void initAllObjects(List<Visible> viewObjects) {
+		moles = new ArrayList<MoleInterface>();
+		player = getAPlayer();
+		label = new TextLabel(350, 220, 100, 40, "");
+		timeLabel = new TextLabel(360, 40, 80, 40, "30.0");
+		viewObjects.add(player);
+		viewObjects.add(timeLabel);
+		viewObjects.add(label);
+	}
+
+
 
 }

@@ -19,7 +19,6 @@ public abstract class GUIApplication extends JFrame implements Runnable {
 		initScreen();
 		setVisible(true);
 	}
-
 	public abstract void initScreen();
 
 	public void setScreen(Screen s) {

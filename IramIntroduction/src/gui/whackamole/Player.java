@@ -14,7 +14,6 @@ public class Player extends Component implements PlayerInterface {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void increaseScore(int i) {
 		score += i;
 		update();
@@ -23,6 +22,7 @@ public class Player extends Component implements PlayerInterface {
 
 	@Override
 	public void update(Graphics2D g) {
+		g = clear();
 		g.setColor(Color.black);
 		g.drawOval(0, 0, 99, 99);
 		g.drawString("Score = "+score, 40, 55);
