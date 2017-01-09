@@ -1,5 +1,6 @@
 package gui.simon;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,10 +50,14 @@ public class SimonScreenIram extends ClickableScreen implements Runnable {
 	}
 
 	private MoveInterfaceIram randomMove() {
-		// TODO Auto-generated method stub
-		return null;
+		ButtonInterfaceIram[] b;
+		//code that randomly selects a ButtonInterfaceIram
+		int chosen = (int)(Math.random()*b.length);
+		while(chosen == lastSelectedButton){
+			chosen = (int)(Math.random()*b.length);
+		}
+		return getMove(b);
 	}
-
 	private ProgressInterfaceIram getProgress() {
 		/**
 		Placeholder until partner finishes implementation of ProgressInterface
@@ -61,7 +66,11 @@ public class SimonScreenIram extends ClickableScreen implements Runnable {
 	}
 
 	private void addButtons() {
-		// TODO Auto-generated method stub
+		int numberOfButtons = 5;
+		Color[] colors = {Color.blue, Color.red, Color.yellow, Color.orange, Color.green};
+		for(int i = 0; i < numberOfButtons; i++){
+
+		}
 		
 	}
 
