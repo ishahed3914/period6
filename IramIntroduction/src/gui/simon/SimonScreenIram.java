@@ -73,5 +73,12 @@ public class SimonScreenIram extends ClickableScreen implements Runnable {
 		}
 		
 	}
+	
+	private ProgressInterface getProgress() {
+		return new Progress();
+	}
 
+	private ButtonInterface getAButton() {
+		return new Button();
+	}
 }
