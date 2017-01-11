@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import gui.Screen;
 import gui.components.Button;
 import gui.components.Graphics;
+import gui.components.MovingComponent;
 import gui.components.TextArea;
 import gui.components.Action;
 import gui.components.TextLabel;
@@ -43,7 +44,12 @@ public class CoordinateScreen extends Screen implements MouseListener, MouseMoti
 		viewObjects.add(area);
 		car = new Graphics(100, 400, .5, "resources/" + "sampleImages/veneno.jpg");
 		viewObjects.add(car);
-	}
+		MovingComponent c = new MovingComponent(20,10,100,100);
+		viewObjects.add(c);
+		c.setVy(2);
+		c.setVx(1);
+		c.play();
+	}	
 
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
