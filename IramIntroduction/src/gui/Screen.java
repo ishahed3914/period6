@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseListener;
@@ -13,166 +12,162 @@ import gui.components.Visible;
 
 public abstract class Screen {
 
-	private int width;
-	private int height;
+	private BufferedImage image;
 	private ArrayList<Visible> viewObjects;
 
-	protected BufferedImage image;
 
 	public Screen(int width, int height) {
 		viewObjects = new ArrayList<Visible>();
-		this.width = width;
-		this.height = height;
 		initObjects(viewObjects);
-		initImage();
+		initImage(width, height);
 	}
 
 	public abstract void 
 	initObjects(ArrayList<Visible> viewObjects);
 
-	private void initImage() {
-		image = new BufferedImage(width, 
-				height, 
-				BufferedImage.TYPE_INT_ARGB);
+	public void initImage(int width, int height) {
+		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		update();
 	}
 
+	public BufferedImage getImage(){
+		return image;
+	}
+
+	public int getWidth(){
+		return image.getWidth();
+	}
+
+	public int getHeight(){
+		return image.getHeight();
+	}
+
 	public void update() {
-		//this is where you draw stuff
 		Graphics2D g = image.createGraphics();
+		//smooth the graphics
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		//make background
+
 		g.setColor(Color.white);
 		g.fillRect(0, 0, image.getWidth(), image.getHeight());
 		g.setColor(Color.black);
-		//draw all visible components
+//		for(int i = 0; i < viewObjects.size(); i++){
+//			
+//		}
 		for(int i = 0; i < viewObjects.size(); i++){
-			Visible v = viewObjects.get(i);
+			Visible v= viewObjects.get(i);
 			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
 		}
-		//		g.setFont(new Font("Helvetica",Font.PLAIN,20));
-		//		g.drawString("Hello",	 40, 80);
-		//		g.drawOval(0, 40, 120, 80);
-		//		g.drawRect(20, 120, 80, 110);
-		//		g.drawLine(100, 120, 110, 200);
-		//		
-		//		g.setColor(Color.green);
-		//		for(int i = 0; i < image.getWidth(); i+=4){
-		//			g.drawLine(i, 230, i, 238);
-		//		}
-
 	}
 
+	
+	//represents ABILITY to listen to mouse
+	//but isn't actually doing something
+	public MouseMotionListener getMouseMotionListener(){
+		return null;
+	}
+	
+	public MouseListener getMouseListener(){
+		return null;
+	}
 
-	/**
-	 * Remove a visible from the Screen
-	 * @param v
-	 */
-	public void remove(Visible v){
-		/**ArrayList notes
-		 * While this method is very simple, do not 
-		 * underestimate the trickiness of removing
-		 * items in an ArrayList. It causes indices 
-		 * to change:
-		 * Example suppose you have an ArrayList<Integer>
-		 * and you want to remove all values greater than 5
-		 * This is BAD:
-		 * 
-		 * for(int i = 0; i <list.size(); i++){
-		 * 	if(list.get(i) > 5) list.remove(i);
-		 * }
-		 * 
-		 * suppose you have (4,5,6,7)
-		 * the first Integer to be removed is 6, at index 2
-		 * since it gets removed, 7 moves from index 3 to 2.
-		 * your list is now (4,5,7)
-		 * after you increment i, i becomes 3.
-		 * This is out of bounds
-		 * so 7 never gets removed
-		 * Instead, when an object is removed,
-		 * decrease i to compensate for change in size:
-		 * 
-		 * CORRECT
-		 * * for(int i = 0; i <list.size(); i++){
-		 * 	if(list.get(i) > 5) {
-		 *          list.remove(i);
-		 *          i--;
-		 *  }
-		 * }
-		 * 
-		 * ALSO CORRECT
-		 * * for(int i = 0; i <list.size(); i++){
-		 * 	while(i < list.size() && list.get(i) > 5) list.remove(i);       
-		 * }
-		 * 
-		 * for this reason, the following doesn't even work!
-		 * BECAUSE remove changes the size!
-		 * for(Integer i: list){
-		 * 	if(i > 5)list.remove(i);
-		 * }
-		 * 
-		 * FINALLY, if you remove using an index, it 
-		 * returns the removed object, so you can do this:
-		 * System.out.println(list.remove(0).toString() + 
-		 *     " was removed.");
-		 * 
-		 */
-		viewObjects.remove(v);
+	public void addObject(Visible v) {
+		viewObjects.add(v);
+	}
+
+	public void remove(Visible v) {
 		/**
-		 * this removes the object that has the same identity
-		 * as v, not an object that is equal to v
+		 * Note: in this implementation, we have
+		 * a very simple command: remove(v)
+		 * however, remove is sorta a big deal on the 
+		 * AP exam. Here's why:
+		 * 
+		 * When an object is removed from a List, every
+		 * other object AFTER that object is moved up
+		 * in order. Therefore, all of their respective
+		 * indices change. You MUST, MUST MUST be aware
+		 * of this.
+		 * 
+		 * Here is a CLAAAAAASSIC example:
+		 * 
+		 * The following is WRONG
+		 * Suppose you have a List<Integer> with
+		 * {4,8,7,1}
+		 * and you want to remove all Integers greater than
+		 * 5. You do this:
+		 * for(int i = 0; i < list.size(); i++){
+		 * 	   if(list.get(i) > 5) list.remove(i)
+		 * }
+		 * YOU FAAAAAAAAAIL!!!!!!!!!!
+		 * 
+		 * Why do you fail?
+		 * i = 0, nothing changes
+		 * i = 1, the '8' is removed
+		 * now we have:
+		 * {4,7,1}
+		 *  i = 2 nothing changes
+		 *  i = 3 exit the for loop. We have
+		 *  {4,7,1}
+		 *  
+		 *  THESE TWO WAYS ARE CORRECT:
+		 *  for(int i = 0; i < list.size(); i++){
+		 * 	   while(list.get(i) > 5) list.remove(i);
+		 * }
+		 * 
+		 * for(int i = 0; i < list.size(); i++){
+		 * 	   if(list.get(i) > 5) {
+		 * 			list.remove(i);
+		 * 			i--;//compensate for i++
+		 * 		}
+		 * }
+		 * 
+		 * for the same reason, this doesn't even work
+		 * (because the size can be changed)
+		 * for(Integer i: list){
+		 * 	if(i > 5) list.remove(i);
+		 * }
+		 * 
+		 * ONE MORE NOTE:
+		 * if you call list.remove(int)
+		 * it will return the object being removed at that index
+		 * So you could do something like this
+		 * System.out.println(list.remove(0).toString() +" was removed.");
+		 * 
 		 */
-
+		
+		viewObjects.remove(v);
+		
+		
 	}
-
+	
+	
+	public void moveToBack(Visible v){
+		if(viewObjects.contains(v)){
+			viewObjects.remove(v);
+			//the "back" is index 0
+			viewObjects.add(0,v);
+			//This moves everything else forward in the list
+		}
+	}
+	
 	public void moveToFront(Visible v){
 		if(viewObjects.contains(v)){
 			viewObjects.remove(v);
 			viewObjects.add(v);
 		}
 	}
-
-	public void moveToBack(Visible v){
-		if(viewObjects.contains(v)){
-			viewObjects.remove(v);
-			viewObjects.add(0,v);
-			//moves all objects with index >=n
-			//forward by 1, increases size by 1
-			//adds object to index n
-		}
-	}
-
-	public void addObject(Visible v){
-		viewObjects.add(v);
-	}
-
-
-
-
-
-
-
-	public BufferedImage getImage(){
-		return image;
-	}
-
-	public MouseListener getMouseListener() {
-		return null;
-	}
-
-	public MouseMotionListener getMouseMotionListener() {
-		return null;
-	}
-
-	public int getWidth(){
-		return width;
-	}
-
-	public int getHeight(){
-		return height;
-	}
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
